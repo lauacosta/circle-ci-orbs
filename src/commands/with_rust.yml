@@ -17,8 +17,8 @@ steps:
   - run:
       name: Start sscache and configure rust
       environment:
-        SSCACHE_BUCKET: << parameters.sscache-bucket >>
-        SSCACHE_REGION: << parameters.sscache-region >>
+        SSCACHE_BUCKET: << parameters.sscache_bucket >>
+        SSCACHE_REGION: << parameters.sscache_region >>
       command: <<include(scripts/with-rust-pre.sh)>>
   - steps: << parameters.steps >>
   - run:
