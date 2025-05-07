@@ -4,11 +4,11 @@ parameters:
   steps:
     type: steps
     description: Rust compilaton steps to run
-  sscache-bucket:
+  sscache_bucket:
     type: string
     description: Name of S3 bucket to use for sscache
     default: sscache-bucket
-  sscache-region:
+  sscache_region:
     type: string
     description: S3 region the bucket is in
     default: us-east-1
