@@ -46,7 +46,7 @@ workflows:
 
       - orb-tools/publish:
           orb_name: shadesmar/rust
-          vcs_type: << pipeline.project.type >>
+          vcs_type: github
           pub_type: production
           requires:
             - orb-tools/pack
