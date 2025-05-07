@@ -1,0 +1,4 @@
+description: >
+  Default Rust executor
+docker:
+  - image: 058264390843.dkr.ecr.us-east-1.amazonaws.com/gulfi:latest

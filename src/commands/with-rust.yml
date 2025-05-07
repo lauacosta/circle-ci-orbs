@@ -1,0 +1,26 @@
+description: >
+  Setup de caching, autenticacion con cargo, etc.
+parameters:
+  steps:
+    type: steps
+    description: Rust compilaton steps to run
+  sscache-bucket:
+    type: string
+    description: Name of S3 bucket to use for sscache
+    default: gulfi-sscache
+  sscache-region:
+    type: string
+    description: S3 region the bucket is in
+    default: us-east-1
+
+steps:
+  - run:
+      name: Start sscache and configure rust
+      environment:
+        SSCACHE_BUCKET: << parameters.sscache-bucket >>
+        SSCACHE_REGION: << parameters.sscache-region >>
+      commnad: <<include(scripts/with-rust-pre.sh)>>
+  - steps: << parameters.steps >>
+  - run:
+      name: Stop sscache
+      command: <<include(scripts/with-rust-post.sh)>>
