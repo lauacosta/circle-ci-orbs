@@ -27,7 +27,7 @@ jobs:
               echo 'channel = "1.55.0"'
               echo 'components = [ "rustfmt", "clippy" ]'
             } >> rust-toolchain.toml
-      - shadesmar/with-rust:
+      - shadesmar/with_rust:
           steps:
             - run:
                 command: |
