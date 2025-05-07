@@ -22,10 +22,10 @@ jobs:
           command: |
             {
               echo '[toolchain]'
-              echo 'channel = "1.55.0"'
+              echo 'channel = "1.86.0"'
               echo 'components = [ "rustfmt", "clippy" ]'
             } >> rust-toolchain.toml
-      - shadesmar/with_rust:
+      - rust/with_rust:
           steps:
             - run:
                 command: |
