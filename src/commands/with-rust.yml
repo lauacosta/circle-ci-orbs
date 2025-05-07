@@ -7,7 +7,7 @@ parameters:
   sscache-bucket:
     type: string
     description: Name of S3 bucket to use for sscache
-    default: gulfi-sscache
+    default: sscache-bucket
   sscache-region:
     type: string
     description: S3 region the bucket is in
@@ -19,7 +19,7 @@ steps:
       environment:
         SSCACHE_BUCKET: << parameters.sscache-bucket >>
         SSCACHE_REGION: << parameters.sscache-region >>
-      commnad: <<include(scripts/with-rust-pre.sh)>>
+      command: <<include(scripts/with-rust-pre.sh)>>
   - steps: << parameters.steps >>
   - run:
       name: Stop sscache
