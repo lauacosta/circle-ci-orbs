@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   orb-tools: circleci/orb-tools@12.3
-  <orb-name>: {}
+  shadesmar: {}
 
 filters: &filters
   tags:
@@ -25,7 +25,7 @@ jobs:
               echo 'channel = "1.86.0"'
               echo 'components = [ "rustfmt", "clippy" ]'
             } >> rust-toolchain.toml
-      - rust/with_rust:
+      - shadesmar/with_rust:
           steps:
             - run:
                 command: |
