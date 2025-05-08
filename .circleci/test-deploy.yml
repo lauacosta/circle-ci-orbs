@@ -1,11 +1,11 @@
 version: 2.1
 orbs:
-  orb-tools: circleci/orb-tools@12.3
-  rust: {}
+  # rust: shadesmar/rust@dev:<<pipeline.git.revision>>
+  orb-tools: circleci/orb-tools@12.3.1
 
-# filters: &filters
-#   tags:
-#     only: /.*/
+filters: &filters
+  tags:
+    only: /.*/
 
 release-filters: &release-filters
   branches:
@@ -13,32 +13,32 @@ release-filters: &release-filters
   tags:
     only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
 
-# jobs:
-#   integration-test-1:
-#     executor: shadesmar/rust
-#     steps:
-#       - checkout
-#       - run:
-#           command: |
-#             {
-#               echo '[toolchain]'
-#               echo 'channel = "1.86.0"'
-#               echo 'components = [ "rustfmt", "clippy" ]'
-#             } >> rust-toolchain.toml
-#       - rust/with_rust:
-#           steps:
-#             - run:
-#                 command: |
-#                   cargo --version
-#                   cargo new hello
-#                   cd hello
-#                   cargo run
+jobs:
+  command-test:
+    executor: shadesmar/rust
+    steps:
+      - checkout
+      - run:
+          command: |
+            {
+              echo '[toolchain]'
+              echo 'channel = "1.86.0"'
+              echo 'components = [ "rustfmt", "clippy" ]'
+            } >> rust-toolchain.toml
+      - shadesmar/with_rust:
+          steps:
+            - run:
+                command: |
+                  cargo --version
+                  cargo new hello
+                  cd hello
+                  cargo run
 
 workflows:
   test-deploy:
     jobs:
-      # - integration-test-1:
-      #     filters: *filters
+      - command-test:
+          filters: *filters
           
       - orb-tools/pack:
           filters: *release-filters
@@ -49,6 +49,6 @@ workflows:
           pub_type: production
           requires:
             - orb-tools/pack
-            # - integration-test-1
+            - command-test
           context: [aws]
           filters: *release-filters
