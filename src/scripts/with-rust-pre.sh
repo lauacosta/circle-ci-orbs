@@ -12,7 +12,7 @@ export SCCACHE_LOG="info,sccache::cache=debug"
 sccache --start-server
 
 rustflags=(
-  "-C link-arg=-fuse-ld=mold"
+  "-C linker=clang -C link-arg=-fuse-ld=/usr/local/bin/mold"
   "-C link-arg=-Wl,--compress-debug-sections=zlib"
   "-C force-frame-pointers=yes"
 )
