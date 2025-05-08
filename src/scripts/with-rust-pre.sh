@@ -2,7 +2,7 @@
 
 set -eux
 
-sscache --version
+sccache --version
 command -v mold
 
 export SCCACHE_IDLE_TIMEOUT="0"
