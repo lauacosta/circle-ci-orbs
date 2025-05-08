@@ -3,9 +3,9 @@ orbs:
   orb-tools: circleci/orb-tools@12.3
   rust: {}
 
-filters: &filters
-  tags:
-    only: /.*/
+# filters: &filters
+#   tags:
+#     only: /.*/
 
 release-filters: &release-filters
   branches:
