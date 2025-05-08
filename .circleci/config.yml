@@ -25,5 +25,6 @@ workflows:
           pipeline_number: << pipeline.number >>
           vcs_type: github
           orb_name: shadesmar/rust
+          config_path: .circleci/test-deploy.yml
           requires: [orb-tools/lint, orb-tools/pack, orb-tools/review, shellcheck/check]
           filters: *filters
