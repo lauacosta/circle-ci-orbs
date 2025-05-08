@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
-  # rust: shadesmar/rust@dev:<<pipeline.git.revision>>
   orb-tools: circleci/orb-tools@12.3.1
+  rust: {}
 
 filters: &filters
   tags:
@@ -15,7 +15,7 @@ release-filters: &release-filters
 
 jobs:
   command-test:
-    executor: rust
+    executor: rust/rust
     steps:
       - checkout
       - run:
@@ -25,7 +25,7 @@ jobs:
               echo 'channel = "1.86.0"'
               echo 'components = [ "rustfmt", "clippy" ]'
             } >> rust-toolchain.toml
-      - with_rust:
+      - rust/with_rust:
           steps:
             - run:
                 command: |
