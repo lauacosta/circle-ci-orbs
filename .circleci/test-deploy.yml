@@ -52,5 +52,5 @@ workflows:
           requires:
             - orb-tools/pack
             - command-test
-          context: [aws]
           filters: *release-filters
+          context: [aws]
