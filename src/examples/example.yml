@@ -3,8 +3,8 @@ description: >
 usage:
   version: 2.1
   orbs:
-    <orb-name>: <namespace>/<orb-name>@1.0.0
+    rust: shadesmar/rust@1.0.0
   workflows:
-    use-my-orb:
+    rust:
       jobs:
-        - <orb-name>/<job-name>
+        - rust/with_rust
