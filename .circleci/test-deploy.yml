@@ -35,6 +35,7 @@ jobs:
                   cargo run
 
 workflows:
+  version: 2
   test-deploy:
     jobs:
       - command-test:
