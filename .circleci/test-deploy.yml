@@ -39,9 +39,11 @@ workflows:
     jobs:
       - command-test:
           filters: *filters
+          context: [aws]
           
       - orb-tools/pack:
           filters: *release-filters
+          context: [aws]
 
       - orb-tools/publish:
           orb_name: shadesmar/rust
