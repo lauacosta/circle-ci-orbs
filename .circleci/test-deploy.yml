@@ -14,7 +14,7 @@ release-filters: &release-filters
     only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
 
 jobs:
-  command-test:
+  with_rust_test:
     executor: rust/rust
     steps:
       - checkout
@@ -38,7 +38,7 @@ workflows:
   version: 2
   test-deploy:
     jobs:
-      - command-test:
+      - with_rust_test:
           filters: *filters
           context: [aws]
           
@@ -52,6 +52,6 @@ workflows:
           pub_type: production
           requires:
             - orb-tools/pack
-            - command-test
+            - with_rust_test
           filters: *release-filters
           context: [aws]
