@@ -1,0 +1,13 @@
+description: >
+  Integration between CircleCI and Taiga to move User Stories to "Done"
+parameters:
+  project_name:
+    type: string
+    description: Name of the Taiga project
+
+steps:
+  - run:
+      name: Move the user story to "Done".
+      environment:
+        PROJECT_NAME: << parameters.project_name >>
+      command: <<include(scripts/taiga_integration.sh)>>
